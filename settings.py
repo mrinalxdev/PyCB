@@ -10,6 +10,7 @@ GRAYSCALE_DEFAULT = False
 INVERT_DEFAULT = False
 
 # Colors
+BACKGROUND_COLOR = '#242424'
 WHITE = '#FFF'
 GREY = 'grey'
 BLUE = '#1f6aa5'
