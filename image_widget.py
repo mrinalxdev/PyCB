@@ -8,7 +8,7 @@ class ImageImporter(ctk.CTkFrame):
         self.grid(column = 0, columnspan = 2, row = 0, sticky = 'nsew')
         self.import_func = import_func
 
-        ctk.CTkButton(self, text="Open Image", command = self.open_dialog).pack(expand = "True")
+        ctk.CTkButton(self, text="Open Image", command = self.open_dialog).pack(expand = True)
     
     def open_dialog(self):
         path = filedialog.askopenfile().name
@@ -21,3 +21,8 @@ class ImageOutput(Canvas):
         self.grid(row = 0, column = 1, sticky = 'nsew')
         self.bind("<Config>", resize_image)
         
+
+class CloseOutput(ctk.CTkButton):
+    def __init__(self, parent):
+        super().__init__(master = parent, text = 'x')
+        self.place(relx = 0.99, rely= 0.01, anchor = 'ne')

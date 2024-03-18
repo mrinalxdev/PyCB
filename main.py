@@ -30,6 +30,7 @@ class App(ctk.CTk):
         self.image_tk = ImageTk.PhotoImage(self.image)
         self.image_import.grid_forget()
         self.image_output = ImageOutput(self, self.resize_image)
+        self.close_button = CloseOutput(self)
 
         self.resize_image()
 
@@ -37,18 +38,18 @@ class App(ctk.CTk):
     def resize_image(self, event):
 
         #current canvas ratio
-        canvas_ratio = event.widht / event.height
+        canvas_ratio = event.widht / event.hieght
 
         if canvas_ratio > self.image_ratio:
-            image_height = int(event.height)
+            image_hieght = int(event.hieght)
             image_width = int(event.hieght * self.image_ratio )
         else: 
             image_width = int(event.width)
             image_hieght = int(image_width / self.image_ratio)
 
         self.image_output.delete('all')
-        resize_image = self.image.resize((image_width, image_height))
-        self.image_tk = ImageTk.PhotoImage(resize_image)
+        resized_image = self.image.resize((image_width, image_hieght))
+        self.image_tk = ImageTk.PhotoImage(resized_image)
         self.image_output.create_image(event.width / 2, event.width / 2, image = self.image_tk)
 
 App()
