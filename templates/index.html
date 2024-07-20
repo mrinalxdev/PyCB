@@ -1,0 +1,42 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Buddy</title>
+    <script>
+        function updateErrors() {
+            let totalErrors = document.getElementById("total_errors").value;
+            let resolvedErrors = document.getElementById("resolved_errors").value;
+
+            fetch('/update_errors', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `total_errors=${totalErrors}&resolved_errors=${resolvedErrors}`
+            }).then(response => {
+                if (response.status === 200) {
+                    alert('Errors updated successfully');
+                } else {
+                    alert('Failed to update errors');
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to your Coding Buddy</h1>
+    <p>Music is playing in the background, and I'll check in with you every 30 minutes.</p>
+    <div>
+        <label for="total_errors">Total Errors:</label>
+        <input type="number" id="total_errors" name="total_errors">
+    </div>
+    <div>
+        <label for="resolved_errors">Resolved Errors:</label>
+        <input type="number" id="resolved_errors" name="resolved_errors">
+    </div>
+    <button onclick="updateErrors()">Update Errors</button>
+</body>
+</html>
